@@ -8,6 +8,7 @@ $lista = [];
 $listacliente = $contato->getAll();
 $listaemprestimo =$contato->getAllEmprestimos();
 
+
 ?>
 <html>
     <head>
@@ -33,7 +34,7 @@ $listaemprestimo =$contato->getAllEmprestimos();
         </div>
         <div class="botões-editar-excluir">
         <li class="abaixo">
-            <a href="editar.php?id=<?=$cliente['id'];?>">
+            <a href="gerenciaremprestimos.php?id=<?=$cliente['id'];?>">
                 <img class="imagem" src="src/img/dollar.png">
             </a>
             <a href="editar.php?id=<?=$cliente['id'];?>">

@@ -20,6 +20,8 @@ class Contato {
 			return false;
 		}
 	}
+
+
     public function getNome($email){
         $sql = "SELECT name FROM cliente WHERE email = :email";
         $sql = $this->pdo->prepare($sql);
