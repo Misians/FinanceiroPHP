@@ -35,7 +35,7 @@ $listaemprestimo =$contato->getAllEmprestimos();
         <div class="botões-editar-excluir">
         <li class="abaixo">
             <a href="gerenciaremprestimos.php?id=<?=$cliente['id'];?>">
-                <img class="imagem" src="src/img/dollar.png">
+                <img alt="ver emprestimos" class="imagem" src="src/img/dollar.png">
             </a>
             <a href="editar.php?id=<?=$cliente['id'];?>">
                 <img class="imagem" src="src/img/editar(1).png">

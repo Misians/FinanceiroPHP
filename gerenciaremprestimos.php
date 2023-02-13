@@ -1,7 +1,8 @@
 <?php
 include 'emprestimo.class.php';
-$emprestimo = new Emprestimo();
 include 'contato.class.php';
+$emprestimo = new Emprestimo();
+
 $contato = new Contato;
 
 
@@ -27,8 +28,6 @@ if(!empty($_GET['id'])){
 
 
 <div>
-    <a>Gerenciar emprestimos</a>
-    <br /><br />
     <a class="botao-add" href="adicionar.emprestimo.php?id=<?=$info['id'];?>">ADICIONAR EMPRESTIMO</a>
     <?php
     foreach($listaemprestimo as $emprestimos):
@@ -46,7 +45,7 @@ if(!empty($_GET['id'])){
         <div class="botões-editar-excluir">
         <li class="abaixo">
         </a>
-        <a href="editar.php?id=<?=$emprestimos['id_emprestimo'];?>">
+        <a href="emp.editar.php?id_emprestimo=<?=$emprestimos['id_emprestimo'];?>">
                 <img class="imagem" src="src/img/editar(1).png">
             </a>
             

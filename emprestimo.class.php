@@ -68,6 +68,17 @@ class Emprestimo {
             return array();
         }
     }
+    public function getInfoUnicoEmprestimo($id){ //pegando todos os campos de um emprestimo
+        $sql = "SELECT * FROM emprestimo WHERE id_emprestimo = :id";
+        $sql = $this->pdo->prepare($sql);
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+        if($sql->rowCount() > 0){
+            return $sql->fetchAll();
+        }else{
+            return array();
+        }
+    }
     public function getAllEmprestimos(){ //pegando todos os dados de todos emprestimos
         $sql = "SELECT * FROM emprestimo";
         $sql = $this->pdo->query($sql);

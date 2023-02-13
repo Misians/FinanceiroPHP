@@ -5,14 +5,6 @@ include 'contato.class.php';
 $emprestimo = new Emprestimo();
 $contato = new Contato();
 
-if(!empty($_GET['id_cliente'])){
-
-
-    $id_sent = ($_GET['id_cliente']);
-    $id = (int)filter_var($id_sent, FILTER_SANITIZE_NUMBER_INT);
-    $info = $emprestimo->getInfoEmprestimos($id);
-}
-
 $mesesadiados = 10;
 $total = 10;
 if(!empty($_GET['id'])){
@@ -30,6 +22,8 @@ if(!empty($_GET['id'])){
 <head>
         <link rel="stylesheet" href="estilos.php">
         <title>ADICIONAR DÍVIDA</title>
+        
+        
 </head>
 <body>
 <h1>Adicionar dívida</h1>
@@ -38,7 +32,7 @@ if(!empty($_GET['id'])){
     <input type="hidden" name="id" value="<?php echo $infor;?>" />
 
     <label>
-            % de Juros: <br/>
+            % de Juros por mês: <br/>
             <input placeholder="Só o numero" type="text" name="juros">
         </label><br/><br/>
         <label>
@@ -52,12 +46,8 @@ if(!empty($_GET['id'])){
 
         <label>
             Valor: <br/>
-            <?php
-            echo $infoA['id'];
-            ?>
             <input placeholder="Apenas número sem . e ," type="text" name="valor">
         </label><br/><br/>
         <input type="submit" value="Adicionar">
     </form>
-</form>
 </body>
