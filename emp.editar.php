@@ -9,12 +9,66 @@ if (!empty($_GET['id_emprestimo'])) {
 }
 foreach($info as $informacao):
 ?>
+
+<?php
+	if(isset($_GET['loggout'])){
+		Painel::loggout();
+	}
+?>
+<!DOCTYPE html>
+<html>
 <head>
-        <link rel="stylesheet" href="estilos.php">
-        <title>EDITAR USUARIO</title>
+    <link rel="stylesheet" href="estilos.php">
+	<script src="https://kit.fontawesome.com/1825bd9b94.js" crossorigin="anonymous"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<title>Editar dívida</title>
 </head>
-    <body>
-        <h1> Editar dívida do cliente</h1>
+<body>
+
+<div class="menu">
+	<div class="menu-wraper">
+	<div class="box-usuario">
+		<div class="nome-usuario">
+			</div><!--box-cargo-->
+		</div><!--nome-usuario-->
+	</div><!--box-usuario-->
+
+
+	<div class="itens-menu">
+		<a href="index.php"> < Voltar para Home</a>
+		<h2>Cadastro</h2>
+			<a href="adicionar.php">Cadastrar Cliente</a>
+			<a href="gerenciarclientes.php">Visualizar Clientes</a>
+		<h2>Empréstimo</h2>
+			<a href="">Cadastrar Empréstimo</a>
+			<a href="">Visualizar Empréstimos</a>
+		<h2>Financeiro</h2>
+			<a href="">Caixa</a>
+			<a href="">Recebimento</a>
+		<h2>Administração</h2>
+			<a href="">Adicionar Usuário</a>
+			<a href="">Editar Usuário</a>
+	</div><!--intens-menu-->
+	</div><!--menu-wraper-->
+</div><!--menu-->
+
+<header>
+	<div class="center">
+		<div class="menu-botao">
+			<i class="fa fa-bars"></i>
+		</div><!--menu-botao-->
+		<div class="loggout">
+			<a href="?loggout"><i class="fa fa-window-close"></i><span> Sair</span></a>
+		</div><!--loggout-->
+	</div><!--center-->
+	<div class="clear"></div><!--clear-->
+</header>
+<div class="content">
+
+
         <form class="form-add" method="POST" action="emp.adicionar.action.php">
 
         <input type="hidden" name="id" value="<?php echo $infor;?>" />
@@ -37,5 +91,8 @@ foreach($info as $informacao):
         </label><br/><br/>
         <input type="submit" value="Adicionar">
         </form>
+    </div>
+        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src=js/main.js></script>
     </body>
 <?php endforeach;?>
