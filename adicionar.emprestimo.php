@@ -5,19 +5,14 @@ include 'contato.class.php';
 $emprestimo = new Emprestimo();
 $contato = new Contato();
 
-$mesesadiados = 10;
-$total = 10;
-if(!empty($_GET['id'])){
-    $id_sentA = ($_GET['id']);
-    $idA = (int)filter_var($id_sentA, FILTER_SANITIZE_NUMBER_INT);
-    $infoA = $contato->getInfo($idA);
+if (!empty($_GET['id'])) {
 
-    }
-    else{
-        header("Location: gerenciarclientes.php");
-    }
-    $infor = $infoA['id'];
+    $id_sent = ($_GET['id']);
+    $id = (int)filter_var($id_sent, FILTER_SANITIZE_NUMBER_INT);
+    $info = $contato->getInfo($id);
+}
 ?>
+
 <?php
 	if(isset($_GET['loggout'])){
 		Painel::loggout();
@@ -76,25 +71,31 @@ if(!empty($_GET['id'])){
 
 <form class="content" align="center" method="POST" action="emp.adicionar.action.php">
 
-    <input type="hidden" name="id" value="<?php echo $infor;?>" />
+<label for="cliente">Escolha o cliente:</label>
+<?php echo $info["id"]; ?>
 
+<br/>
+	<input type="hidden" name="id" value="<?php echo $info["id"];?>" />
     <label>
             % de Juros por mês: <br/>
             <input placeholder="Só o numero" type="text" name="juros">
         </label><br/><br/>
         <label>
             Data feita o empréstimo <br/>
-            <input type="date" name="dataemprestimo">
+            <input type="date" name="data_emprestado">
         </label><br/><br/>
         <label>
             Data a ser pago: <br/>
-            <input type="date" name="datapagamento">
+            <input type="date" name="data_pagar">
         </label><br/><br/>
 
         <label>
             Valor: <br/>
-            <input placeholder="Apenas número sem . e ," type="text" name="valor">
+            <input placeholder="Apenas número sem . e ," type="text" name="divida_inicial">
         </label><br/><br/>
+		<!--<input type="hidden" name="japago" value="<?php echo $info["japago"];?>" />
+		<input type="hidden" name="meses_adiados" value="<?php echo $info["meses_adiados"];?>" />
+		<input type="hidden" name="total_divida" value="0" />-->
         <input type="submit" value="Adicionar">
     </form>
 

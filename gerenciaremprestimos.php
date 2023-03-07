@@ -95,12 +95,15 @@ if(!empty($_GET['id'])){
         <div class="botões-editar-excluir">
         <li class="abaixo">
         </a>
+        <a href="quitaremp.php?id_emprestimo=<?=$emprestimos['id_emprestimo'];?>">
+            <img class="imagem" src="src/img/money.png">
+        </a>
         <a href="emp.editar.php?id_emprestimo=<?=$emprestimos['id_emprestimo'];?>">
-                <img class="imagem" src="src/img/editar(1).png">
-            </a>
+            <img class="imagem" src="src/img/editar(1).png">
+        </a>
             
-            <a href="remover_emprestimo.php?id_emprestimo=<?=$emprestimos['id_emprestimo'];?>" 
-            onclick="return confirm('tem certeza que quer excluir esse cliente?')">
+        <a href="remover_emprestimo.php?id_emprestimo=<?=$emprestimos['id_emprestimo'];?>" 
+        onclick="return confirm('tem certeza que quer excluir esse cliente?')">
             <img class="imagem" src="src/img/excluir.png">
         </a>
         </li>

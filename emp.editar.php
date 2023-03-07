@@ -10,86 +10,37 @@ if (!empty($_GET['id_emprestimo'])) {
 foreach($info as $informacao):
 ?>
 
-<?php
-	if(isset($_GET['loggout'])){
-		Painel::loggout();
-	}
-?>
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="estilos.php">
-	<script src="https://kit.fontawesome.com/1825bd9b94.js" crossorigin="anonymous"></script>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 	<title>Editar dívida</title>
 </head>
 <body>
-
-<div class="menu">
-	<div class="menu-wraper">
-	<div class="box-usuario">
-		<div class="nome-usuario">
-			</div><!--box-cargo-->
-		</div><!--nome-usuario-->
-	</div><!--box-usuario-->
-
-
-	<div class="itens-menu">
-		<a href="index.php"> < Voltar para Home</a>
-		<h2>Cadastro</h2>
-			<a href="adicionar.php">Cadastrar Cliente</a>
-			<a href="gerenciarclientes.php">Visualizar Clientes</a>
-		<h2>Empréstimo</h2>
-			<a href="">Cadastrar Empréstimo</a>
-			<a href="">Visualizar Empréstimos</a>
-		<h2>Financeiro</h2>
-			<a href="">Caixa</a>
-			<a href="">Recebimento</a>
-		<h2>Administração</h2>
-			<a href="">Adicionar Usuário</a>
-			<a href="">Editar Usuário</a>
-	</div><!--intens-menu-->
-	</div><!--menu-wraper-->
-</div><!--menu-->
-
-<header>
-	<div class="center">
-		<div class="menu-botao">
-			<i class="fa fa-bars"></i>
-		</div><!--menu-botao-->
-		<div class="loggout">
-			<a href="?loggout"><i class="fa fa-window-close"></i><span> Sair</span></a>
-		</div><!--loggout-->
-	</div><!--center-->
-	<div class="clear"></div><!--clear-->
-</header>
 <div class="content">
+        <form class="form-add" method="POST" action="emp.editar.action.php">
 
-
-        <form class="form-add" method="POST" action="emp.adicionar.action.php">
-
-        <input type="hidden" name="id" value="<?php echo $infor;?>" />
+        <input type="hidden" name="id_emprestimo" value="<?php echo $informacao["id_emprestimo"];?>" />
         <label>
             % de Juros por mês: <br/>
-            <input placeholder="Só o numero" type="text" name="juros" value="<?php echo $informacao['juros'];?>">
+            <input type="text" name="juros" value="<?php echo $informacao['juros'];?>">
         </label><br/><br/>
         <label>
             Data feita o empréstimo <br/>
-            <input type="date" name="dataemprestimo" value="<?php echo $informacao['data_emprestado'];?>">
+            <input type="date" name="data_emprestado" value="<?php echo $informacao['data_emprestado'];?>">
         </label><br/><br/>
         <label>
             Data a ser pago: <br/>
-            <input type="date" name="datapagamento" value="<?php echo $informacao['data_pagar'];?>">
+            <input type="date" name="data_pagar" value="<?php echo $informacao['data_pagar'];?>">
         </label><br/><br/>
 
         <label>
             Valor: <br/>
-            <input placeholder="Apenas número sem . e ," type="text" name="valor" value="<?php echo $informacao['divida_inicial'];?>">
+            <input type="text" name="divida_inicial" value="<?php echo $informacao['divida_inicial'];?>">
         </label><br/><br/>
-        <input type="submit" value="Adicionar">
+		<a><?php echo $id, " A ", $idA," B ", $_GET['id_emprestimo']?></a>
+        <input type="submit" value="Atualizar">
         </form>
     </div>
         <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
