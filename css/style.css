@@ -31,7 +31,11 @@ body{
 	transform: translate(-50%,-50%);
 	-ms-transform:translate(-50%,-50%);
 }
-
+.centralizar{
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
 .box-login h2{
 	text-align: center;
 	font-size: 19px;

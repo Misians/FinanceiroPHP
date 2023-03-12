@@ -32,11 +32,8 @@
 			<a href="gerenciarclientes.php">Visualizar Clientes</a>
 		<h2>Empréstimo</h2>
 			<a href="">Cadastrar Empréstimo</a>
-			<a href="">Visualizar Empréstimos</a>
-		<h2>Financeiro</h2>
-			<a href="">Caixa</a>
-			<a href="">Recebimento</a>
-		<h2>Administração</h2>
+			<a href="gerenciarclientes.php">Visualizar Emprestimos</a>
+			<h2>Administração</h2>
 			<a href="">Adicionar Usuário</a>
 			<a href="">Editar Usuário</a>
 	</div><!--intens-menu-->

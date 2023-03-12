@@ -51,9 +51,7 @@ if(!empty($_GET['id'])){
 			<a href="gerenciarclientes.php">Visualizar Clientes</a>
 		<h2>Empréstimo</h2>
 			<a href="adicionar.emprestimo.php?id=<?=$info['id'];?>"> Cadastrar Empréstimo</a>
-		<h2>Financeiro</h2>
-			<a href="">Caixa</a>
-			<a href="">Recebimento</a>
+		
 		<h2>Administração</h2>
 			<a href="">Adicionar Usuário</a>
 			<a href="">Editar Usuário</a>
@@ -87,7 +85,7 @@ if(!empty($_GET['id'])){
    
         <div class="listacliente">
         <li><a>Dinheiro emprestado: </a> <?=$emprestimos['divida_inicial'];?></li>
-        <li ><a>Dívida total até data atual: </a> <?=$emprestimos['total_divida'];?></li>
+        <!--<li ><a>Dívida total até data atual: </a> <?=$emprestimos['total_divida'];?></li>-->
         <li><a>Data de pagamento: </a><?=$emprestimos['data_pagar'];?></li>
         <li><a>Data do empréstimo: </a><?=$emprestimos['data_emprestado'];?></li>
        

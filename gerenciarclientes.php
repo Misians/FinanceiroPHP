@@ -7,11 +7,7 @@ $lista = [];
 
 $listacliente = $contato->getAll();
 $listaemprestimo =$contato->getAllEmprestimos();
-
-
 ?>
-
-
 <?php
 	if(isset($_GET['loggout'])){
 		Painel::loggout();
@@ -59,9 +55,6 @@ $listaemprestimo =$contato->getAllEmprestimos();
 		<h2>Cadastro</h2>
 			<a href="adicionar.php">Cadastrar Cliente</a>
 			<a href="gerenciarclientes.php">Visualizar Clientes</a>
-		<h2>Financeiro</h2>
-			<a href="">Caixa</a>
-			<a href="">Recebimento</a>
 		<h2>Administração</h2>
 			<a href="">Adicionar Usuário</a>
 			<a href="">Editar Usuário</a>

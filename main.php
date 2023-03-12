@@ -1,9 +1,48 @@
 <!--Loggout-->
+<?php
+include 'emprestimo.class.php';
+
+$emprestimo = new Emprestimo();
+$lista = [];
+$lista = $emprestimo->getAllEmprestimos();
+$atrasados = 0;
+$emtempo = 0;
+$perto = 0;
+foreach($lista as $conta){
+	$totalemprestado = $totalemprestado + $conta['divida_inicial'];
+	$qtdemprestimos++;
+	$totalrecebido = $totalrecebido + $conta['japago'];
+	$data_pagar_emprestimo = $conta["data_pagar"];        
+	$data_atual = new DateTime(date('Y-m-d'));
+	$data_inicial = new DateTime($data_pagar_emprestimo);
+	$intervalo = $data_inicial->diff($data_atual);
+	
+	if($intervalo < 0){
+		$atrasados++;
+	}
+	if($intervalo <= 5 && $intervalo < 0){
+		$perto++;
+	}
+	if($intervalo ){
+		$emtempo++;
+	}
+
+}?>
+
+<?php
+include 'contato.class.php';
+$contato = new Contato();
+$lista1 = [];
+$lista1 = $contato->getAll();
+foreach($lista1 as $cliente){
+	$clientenumero++;
+}?>
 
 <?php
 	if(isset($_GET['loggout'])){
 		Painel::loggout();
 	}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,12 +82,6 @@
 		<h2>Cadastro</h2>
 			<a href="adicionar.php">Cadastrar Cliente</a>
 			<a href="gerenciarclientes.php">Visualizar Clientes</a>
-		<h2>Empréstimo</h2>
-			<a href="">Cadastrar Empréstimo</a>
-			<a href="">Visualizar Empréstimos</a>
-		<h2>Financeiro</h2>
-			<a href="">Caixa</a>
-			<a href="">Recebimento</a>
 		<h2>Administração</h2>
 			<a href="">Adicionar Usuário</a>
 			<a href="">Editar Usuário</a>
@@ -77,30 +110,25 @@
 			<div class="box-metricas-single">
 				<div class="box-metricas-wraper">
 					<h2>Total Emprestado</h2>
-						<p>R$ 150,00</p>
+						<p>R$ <?php echo $totalemprestado ?></p>
 				</div><!--box-metrica-wraper-->
 			</div><!--box-metrica-single-->
 
 			<div class="box-metricas-single">
 				<div class="box-metricas-wraper">
 					<h2>Total Recebido</h2>
-						<p>R$ 200,00</p>
+						<p>R$ <?php echo $totalrecebido?></p>
 				</div><!--box-metrica-wraper-->
 			</div><!--box-metrica-single-->
 
 			<div class="box-metricas-single">
 				<div class="box-metricas-wraper">
 					<h2>Total a Receber</h2>
-						<p>R$ 300,00</p>
+						<p>R$ <?php echo ($totalemprestado - $totalrecebido)?></p>
 				</div><!--box-metrica-wraper-->
 			</div><!--box-metrica-single-->
 
-			<div class="box-metricas-single">
-				<div class="box-metricas-wraper">
-					<h2>Juros Recebido</h2>
-						<p>R$ 150,00</p>
-				</div><!--box-metrica-wraper-->
-			</div><!--box-metrica-single-->
+		
 			<div class="clear"></div><!--clear-->
 		</div><!--box-metricas-->
 	</div><!--box-content-->
@@ -115,14 +143,14 @@
 			<div class="box-metricas-single">
 				<div class="box-metricas-wraper">
 					<h2>Empréstimos Ativos</h2>
-						<p>20</p>
+						<p><?php echo $qtdemprestimos?></p>
 				</div><!--box-metrica-wraper-->
 			</div><!--box-metrica-single-->
 
 			<div class="box-metricas-single">
 				<div class="box-metricas-wraper">
-					<h2>Total de Empréstimos</h2>
-						<p>65</p>
+					<h2>Total de clientes</h2>
+						<p><?php echo $clientenumero	?></p>
 				</div><!--box-metricas-wraper-->
 			</div><!--box-metricas-single-->
 			<div class="clear"></div><!--clear-->
@@ -136,24 +164,34 @@
 		<!--<h2><i class="fa fa-home"></i>  Painel de Controle - <?php echo $_SESSION['nome']; ?></h2>-->
 		<h2>Prazos:</h2>
 		<div class="box-metricas">
-			<div class="box-metricas-single">
-				<div class="box-metricas-wraper">
-					<h2>No Prazo</h2>
-						<p>15</p>
-				</div><!--box-metricas-wraper-->
-			</div><!--box-metricas-single-->
+			
+
+				<?php
+    				foreach($lista as $conta):
+					$date1 = date_create(date('Y/m/d'));
+					$date2 = date_create($conta['data_pagar']);
+					$diff = date_diff($date1,$date2);
+					if($date2 < $date1){
+						$contadoratrasado++;
+					}
+					if($date2 > $date1){
+						$contadorperto++;
+					}
+						endforeach
+        			?>
 
 			<div class="box-metricas-single">
 				<div class="box-metricas-wraper">
+
 					<h2>Vencidos</h2>
-						<p>3</p>
+						<p><?php echo $contadoratrasado?></p> <!-- AQUI SÃO OS QUE ESTÃO VENCIDOS -->
 				</div><!--box-metricas-wraper-->
 			</div><!--box-metricas-single-->
 
 			<div class="box-metricas-single">
 				<div class="box-metricas-wraper">
 					<h2>A Vencer</h2>
-						<p>2</p>
+						<p><?php echo $contadorperto?></p> <!-- AQUI SÃO OS QUE ESTÃO PERTO DE VENCER -->
 				</div><!--box-metricas-wraper-->
 			</div><!--box-metricas-single-->
 			<div class="clear"></div><!--clear-->
